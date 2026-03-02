@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27 Chapters of Rain - Megha's Birthday Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-raindrop"></div>
+            <p class="preloader-text">Loading your magical journey...</p>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Canvas for Three.js -->
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <!-- Scene 1: Galaxy Intro - Image Background -->
+    <div id="scene1-image-bg" class="scene-image-bg" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&h=1080&fit=crop');
+        background-size: cover;
+        background-position: center;
+        z-index: 10;
+        opacity: 0;
+    "></div>
+
+    <!-- Scene 1: Galaxy Intro - Text Overlay -->
+    <div id="scene1-overlay" class="scene-overlay active">
+        <div class="galaxy-intro-content">
+            <h1 id="constellation-text" class="constellation-text">MEGHA</h1>
+            <p id="scene1-subtitle" class="scene-subtitle fade-text">
+                Before Megha became rain, she was stardust.
+            </p>
+        </div>
+    </div>
+
+    <!-- Experience Hub: shown right after scene 1 -->
+    <section id="choice-hub" class="choice-hub hidden" aria-label="Experience choices">
+        <div class="choice-hub-shell">
+            <p class="choice-kicker">Choose Your Door</p>
+            <h2 class="choice-title">Pick what you want to open first</h2>
+            <p class="choice-subtitle">Open one, come back here, then open another.</p>
+
+            <div class="choice-grid">
+                <button id="choice-book" class="choice-card" type="button">
+                    <span class="choice-card-title">Book</span>
+                </button>
+                <button id="choice-notes" class="choice-card" type="button">
+                    <span class="choice-card-title">27 Notes</span>
+                </button>
+                <button id="choice-papa" class="choice-card" data-message-key="papa" type="button">
+                    <span class="choice-card-title">Papa's Message</span>
+                </button>
+                <button id="choice-mummy" class="choice-card" data-message-key="mummy" type="button">
+                    <span class="choice-card-title">Mummy's Message</span>
+                </button>
+                <button id="choice-yashu" class="choice-card" data-message-key="yashu" type="button">
+                    <span class="choice-card-title">Yashu's Message</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scene 4: Book Pages -->
+    <div id="book-container" class="book-container hidden">
+        <div class="book-close-btn" id="close-book">X</div>
+
+        <div class="book-viewport">
+            <div class="book-wrapper chapter-book">
+                <div class="chapter-page left-page">
+                    <p id="chapter-part" class="chapter-part">Part 1 - Chapter 1</p>
+                    <h2 id="chapter-title" class="chapter-title">Chapter 1: The Day Rain Arrived</h2>
+
+                    <div id="chapter-image" class="chapter-image chapter-image-placeholder">
+                        <span id="chapter-image-label" class="chapter-image-label">Sweet memory spot</span>
+                    </div>
+
+                    <div id="chapter-content" class="chapter-content"></div>
+                </div>
+
+                <div class="chapter-page right-page">
+                    <div id="chapter-continued" class="chapter-continued"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Navigation -->
+        <div class="book-navigation">
+            <button id="prev-page" class="nav-btn prev">Previous</button>
+            <span id="page-counter" class="page-counter">Page 1 of 54</span>
+            <button id="next-page" class="nav-btn next">Next</button>
+        </div>
+
+        <!-- Book Footer Info -->
+        <div class="book-footer">
+            <p id="current-chapter" class="current-chapter">Chapter 1: The Day Rain Arrived</p>
+        </div>
+
+    </div>
+
+    <!-- Notes Panel -->
+    <section id="notes-container" class="content-panel hidden" aria-label="Notes panel">
+        <div class="content-shell notes-shell">
+            <button id="notes-back-btn" class="panel-back-btn" type="button">Back to Choices</button>
+            <h2 class="panel-title">27 Notes</h2>
+            <p class="panel-subtitle">Small lines, big feelings.</p>
+
+            <article class="note-card">
+                <p id="note-index" class="note-index">Note 1 of 27</p>
+                <h3 id="note-title" class="note-title">Note title</h3>
+                <p id="note-text" class="note-text">Note text</p>
+            </article>
+
+            <div class="note-nav">
+                <button id="note-prev" class="nav-btn prev" type="button">Previous</button>
+                <button id="note-next" class="nav-btn next" type="button">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family Message Panel -->
+    <section id="message-container" class="content-panel hidden" aria-label="Family message panel">
+        <div class="content-shell message-shell">
+            <button id="message-back-btn" class="panel-back-btn" type="button">Back to Choices</button>
+            <p id="message-kicker" class="panel-kicker">A message for Megha</p>
+            <h2 id="message-title" class="panel-title">Family Message</h2>
+            <p id="message-body" class="message-body"></p>
+        </div>
+    </section>
+
+    <!-- Spotify Background Music -->
+    <iframe
+        id="spotify-bg-player"
+        class="spotify-bg-player"
+        title="Background Music"
+        data-track-id="0tgVpDi06FyKpA1z0VMD4v"
+        src="https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v?utm_source=generator&autoplay=1"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+
+    <!-- Ambient sound for wind -->
+    <audio id="wind-sound" preload="auto" loop>
+        <source src="assets/audio/wind-ambient.wav" type="audio/wav">
+    </audio>
+
+    <!-- Page flip sound -->
+    <audio id="flip-sound" preload="auto">
+        <source src="assets/audio/page-flip.wav" type="audio/wav">
+    </audio>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/scene-manager.js"></script>
+    <script src="js/three-scenes.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/book-data.js"></script>
+    <script src="js/book-manager.js"></script>
+    <script src="js/audio-manager.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

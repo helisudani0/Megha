@@ -1,0 +1,54 @@
+{
+  "name": "27-chapters-of-rain",
+  "version": "1.0.0",
+  "description": "A cinematic 3D interactive birthday website celebrating Megha's 27 years",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "npx http-server -p 8000 -o",
+    "build": "echo 'Build complete - no build step needed for static site'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "birthday",
+    "interactive",
+    "3D",
+    "three.js",
+    "gsap",
+    "cinematic",
+    "experience",
+    "website"
+  ],
+  "author": "Created with love for Megha",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/megha-birthday.git"
+  },
+  "homepage": "https://megha-birthday-website.com",
+  "devDependencies": {},
+  "dependencies": {},
+  "optionalDependencies": {
+    "http-server": "latest",
+    "terser": "latest"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not die"
+  ],
+  "metadata": {
+    "celebrantName": "Megha",
+    "age": 27,
+    "theme": "Rain & Sky",
+    "createdDate": "2024-01-01",
+    "lastUpdate": "2024-02-23",
+    "totalChapters": 27,
+    "totalPages": 54,
+    "scenes": 4
+  }
+}
